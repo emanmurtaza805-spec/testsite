@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #faf7ef;
+    --bg-secondary: #f5f0e2;
+    --bg-card: #fdfcf8;
+    --text-primary: #2a2825;
+    --text-secondary: #5a574f;
+    --text-muted: #8a8780;
+    --border-soft: #e6ede0;
+    --border-medium: #cdddc4;
+    --accent-sage: #5f8a52;
+    --accent-lavender: #9d83ba;
+    --accent-blush: #cf8888;
+    --accent-eucalyptus: #5a8a76;
+    --shadow-color: rgba(95, 138, 82, 0.08);
+  }
+
+  .dark {
+    --bg-primary: #1a2018;
+    --bg-secondary: #212a1f;
+    --bg-card: #283126;
+    --text-primary: #f0ebe0;
+    --text-secondary: #c4c0b3;
+    --text-muted: #8a8a7e;
+    --border-soft: #3a4536;
+    --border-medium: #4a5a44;
+    --accent-sage: #82a874;
+    --accent-lavender: #b8a3d0;
+    --accent-blush: #dfa6a6;
+    --accent-eucalyptus: #7ba894;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+  }
+
+  * {
+    border-color: var(--border-soft);
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  ::selection {
+    background-color: rgba(95, 138, 82, 0.2);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-medium);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-sage);
+  }
+}
+
+@layer components {
+  .card-surface {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    border-radius: 1.5rem;
+    box-shadow: 0 2px 12px var(--shadow-color);
+  }
+
+  .card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px var(--shadow-color);
+  }
+
+  .btn-primary {
+    background-color: var(--accent-sage);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 500;
+    transition: all 0.25s ease;
+  }
+  .btn-primary:hover {
+    background-color: #4a6f42;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(95, 138, 82, 0.3);
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-medium);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 500;
+    transition: all 0.25s ease;
+  }
+  .btn-secondary:hover {
+    background-color: var(--bg-secondary);
+  }
+
+  .input-field {
+    width: 100%;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+    outline: none;
+  }
+  .input-field:focus {
+    border-color: var(--accent-sage);
+    box-shadow: 0 0 0 3px rgba(95, 138, 82, 0.12);
+  }
+
+  .text-secondary {
+    color: var(--text-secondary);
+  }
+  .text-muted {
+    color: var(--text-muted);
+  }
+  .bg-app {
+    background-color: var(--bg-primary);
+  }
+  .bg-card-surface {
+    background-color: var(--bg-card);
+  }
+  .bg-secondary-surface {
+    background-color: var(--bg-secondary);
+  }
+  .border-soft {
+    border-color: var(--border-soft);
+  }
+  .border-medium {
+    border-color: var(--border-medium);
+  }
+}
+
+@layer utilities {
+  .animate-page-enter {
+    animation: slideUp 0.4s ease-out;
+  }
+
+  .task-complete-anim {
+    animation: taskComplete 0.5s ease-out forwards;
+  }
+
+  @keyframes taskComplete {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(0.98); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  .toast-enter {
+    animation: toastIn 0.3s ease-out;
+  }
+  @keyframes toastIn {
+    from { opacity: 0; transform: translateX(100%); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .modal-enter {
+    animation: modalIn 0.25s ease-out;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.96) translateY(8px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .orbit-pulse {
+    animation: orbitPulse 3s ease-in-out infinite;
+  }
+  @keyframes orbitPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(95, 138, 82, 0.3); }
+    50% { box-shadow: 0 0 0 12px rgba(95, 138, 82, 0); }
+  }
+}
